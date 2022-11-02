@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class SakilaApplication {
 
 	@Autowired
-	private actorRepository actorRepository;
+	public actorRepository actorRepository;
 	public SakilaApplication(actorRepository actorRepository) {
 		this.actorRepository = actorRepository;
 	}
@@ -33,8 +34,8 @@ public class SakilaApplication {
 		return actorRepository.findAll();
 	}
 	@GetMapping("/find/{id}")
-	public Optional<actor> getActorById(@PathVariable Integer id) {
-		return actorRepository.findById(id);
+	public actor getActorById(@PathVariable Integer id) {
+		return actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));
 	}
 	@PostMapping("/actors")
 	public actor createActor(@RequestBody actor actor) {

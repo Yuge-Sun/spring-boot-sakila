@@ -48,6 +48,17 @@ public class actor {
         this.actor_id = actor_id;
     }
 
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        output.append("Actor id = ");
+        output.append(this.actor_id);
+        output.append(" first name = ");
+        output.append(this.first_name);
+        output.append(" last name = ");
+        output.append(this.last_name);
+        return output.toString();
+    }
+
 
 
 
