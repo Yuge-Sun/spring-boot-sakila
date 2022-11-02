@@ -20,8 +20,10 @@ public class SakilaApplication {
 
 	@Autowired
 	public actorRepository actorRepository;
-	public SakilaApplication(actorRepository actorRepository) {
+	public filmRepository filmRepository;
+	public SakilaApplication(actorRepository actorRepository, filmRepository filmRepository) {
 		this.actorRepository = actorRepository;
+		this.filmRepository = filmRepository;
 	}
 
 	public static void main(String[] args) {
@@ -33,15 +35,15 @@ public class SakilaApplication {
 	Iterable<actor> getAllActors() {
 		return actorRepository.findAll();
 	}
-	@GetMapping("/find/{id}")
+	@GetMapping("/findActor/{id}")
 	public actor getActorById(@PathVariable Integer id) {
 		return actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));
 	}
-	@PostMapping("/actors")
+	@PostMapping("/addActor")
 	public actor createActor(@RequestBody actor actor) {
 		return actorRepository.save(actor);
 	}
-		@PutMapping("/putActor/{id}")
+	@PutMapping("/putActor/{id}")
 	public ResponseEntity<actor> updateActor(@PathVariable(value = "id") Integer id, @RequestBody actor actorDetails) {
 		Optional<actor> optionalActor =  actorRepository.findById(id);
 		actor actor = optionalActor.get();
@@ -51,7 +53,7 @@ public class SakilaApplication {
 		actor updatedActor = actorRepository.save(actorDetails);
 		return ResponseEntity.ok(updatedActor);
 	}
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/deleteActor/{id}")
 	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer id){
 		Optional<actor> optionalActor =  actorRepository.findById(id);
 		actor actor = optionalActor.get();
@@ -61,6 +63,16 @@ public class SakilaApplication {
 		return response;
 	}
 
+	@GetMapping("/allFilms")
+	public @ResponseBody
+	Iterable<film> getAllFilms() {
+		return filmRepository.findAll();
+	}
+
+	@GetMapping("/findFilm/{id}")
+	public film getFilmById(@PathVariable Integer id) {
+		return filmRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));
+	}
 
 
 }

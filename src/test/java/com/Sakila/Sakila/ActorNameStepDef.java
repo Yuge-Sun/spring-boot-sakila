@@ -18,7 +18,9 @@ public class ActorNameStepDef {
     @Autowired
     public actorRepository actorRepository;
     @Autowired
-    SakilaApplication actor = new SakilaApplication(actorRepository);
+    public filmRepository filmRepository;
+    @Autowired
+    SakilaApplication actor = new SakilaApplication(actorRepository,filmRepository);
     int actorid;
     actor actorinfo;
     @Given("actor exists")
