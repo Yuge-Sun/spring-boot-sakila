@@ -1,12 +1,12 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface filmRepository extends JpaRepository<film, Integer> {
+public interface FilmRepository extends JpaRepository<Film, Integer> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM sakila.film WHERE sakila.film.film_id = ?1")
-    film getFilmNum(int id);
+    Film getFilmNum(int id);
 
     @Query(nativeQuery = true, value = "SELECT \n" +
             "       SUM(`p`.`amount`) AS `total_sales`\n" +

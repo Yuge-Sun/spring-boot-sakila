@@ -1,4 +1,4 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -19,9 +19,9 @@ import java.util.Optional;
 public class SakilaApplication {
 
 	@Autowired
-	public actorRepository actorRepository;
-	public filmRepository filmRepository;
-	public SakilaApplication(actorRepository actorRepository, filmRepository filmRepository) {
+	public ActorRepository actorRepository;
+	public FilmRepository filmRepository;
+	public SakilaApplication(ActorRepository actorRepository, FilmRepository filmRepository) {
 		this.actorRepository = actorRepository;
 		this.filmRepository = filmRepository;
 	}
@@ -32,31 +32,31 @@ public class SakilaApplication {
 
 	@GetMapping("/allActors")
 	public @ResponseBody
-	Iterable<actor> getAllActors() {
+	Iterable<Actor> getAllActors() {
 		return actorRepository.findAll();
 	}
 	@GetMapping("/findActor/{id}")
-	public actor getActorById(@PathVariable Integer id) {
+	public Actor getActorById(@PathVariable Integer id) {
 		return actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));
 	}
 	@PostMapping("/addActor")
-	public actor createActor(@RequestBody actor actor) {
+	public Actor createActor(@RequestBody Actor actor) {
 		return actorRepository.save(actor);
 	}
 	@PutMapping("/putActor/{id}")
-	public ResponseEntity<actor> updateActor(@PathVariable(value = "id") Integer id, @RequestBody actor actorDetails) {
-		Optional<actor> optionalActor =  actorRepository.findById(id);
-		actor actor = optionalActor.get();
+	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") Integer id, @RequestBody Actor actorDetails) {
+		Optional<Actor> optionalActor =  actorRepository.findById(id);
+		Actor actor = optionalActor.get();
 		actorDetails.setActor_id(actorDetails.getActor_id());
 		actorDetails.setLast_name(actorDetails.getLast_name());
 		actorDetails.setFirst_name(actorDetails.getFirst_name());
-		actor updatedActor = actorRepository.save(actorDetails);
+		Actor updatedActor = actorRepository.save(actorDetails);
 		return ResponseEntity.ok(updatedActor);
 	}
 	@DeleteMapping("/deleteActor/{id}")
 	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer id){
-		Optional<actor> optionalActor =  actorRepository.findById(id);
-		actor actor = optionalActor.get();
+		Optional<Actor> optionalActor =  actorRepository.findById(id);
+		Actor actor = optionalActor.get();
 		actorRepository.delete(actor);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
@@ -65,12 +65,12 @@ public class SakilaApplication {
 
 	@GetMapping("/allFilms")
 	public @ResponseBody
-	Iterable<film> getAllFilms() {
+	Iterable<Film> getAllFilms() {
 		return filmRepository.findAll();
 	}
 
 	@GetMapping("/findFilmById/{id}")
-	public film getFilmById(@PathVariable Integer id) {
+	public Film getFilmById(@PathVariable Integer id) {
 		return filmRepository.getFilmNum(id);
 	}
 

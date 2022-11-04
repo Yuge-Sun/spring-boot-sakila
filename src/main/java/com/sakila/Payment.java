@@ -1,18 +1,18 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "inventory")
 
-public class payment {
+public class Payment {
     @Id
     @Column(name = "payment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int paymentId;
 
     @ManyToOne
-    private rental rental;
+    private Rental rental;
 
     @Column(name = "customer_id")
     int customerId;
@@ -26,7 +26,7 @@ public class payment {
     @Column(name = "amount")
     double amount;
 
-    public payment(int paymentId, int customerId, int staffId, int rentalId, double amount) {
+    public Payment(int paymentId, int customerId, int staffId, int rentalId, double amount) {
         this.paymentId = paymentId;
         this.customerId = customerId;
         this.staffId= staffId;
@@ -34,7 +34,7 @@ public class payment {
         this.amount = amount;
     }
 
-    public payment() {
+    public Payment() {
     }
 
     public int getPaymentId() {

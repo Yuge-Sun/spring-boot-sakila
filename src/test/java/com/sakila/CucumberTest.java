@@ -1,4 +1,4 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

@@ -1,4 +1,4 @@
-package com.Sakila.Sakila;
+package com.sakila;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 

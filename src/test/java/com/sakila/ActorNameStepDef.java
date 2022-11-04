@@ -1,4 +1,4 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 
 import io.cucumber.java.en.Given;
@@ -9,20 +9,18 @@ import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.ResourceAccessException;
 
-import java.util.Optional;
-
 
 @ScenarioScope
 public class ActorNameStepDef {
 
     @Autowired
-    public actorRepository actorRepository;
+    public ActorRepository actorRepository;
     @Autowired
-    public filmRepository filmRepository;
+    public FilmRepository filmRepository;
     @Autowired
     SakilaApplication actor = new SakilaApplication(actorRepository,filmRepository);
     int actorid;
-    actor actorinfo;
+    Actor actorinfo;
     @Given("actor exists")
     public void actor_exists() {
         actorid = 1;

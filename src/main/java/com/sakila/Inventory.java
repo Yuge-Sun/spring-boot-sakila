@@ -1,4 +1,4 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,17 +8,17 @@ import java.util.List;
 @Table(name = "inventory")
 
 
-public class inventory {
+public class Inventory {
     @Id
     @Column(name = "inventory_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int inventoryId;
 
     @ManyToOne
-    private film film;
+    private Film film;
 
     @OneToMany(mappedBy = "inventory")
-    private List<rental> rentalList;
+    private List<Rental> rentalList;
 
     @Column(name = "film_id")
     int filmId;
@@ -28,13 +28,13 @@ public class inventory {
 
 
 
-    public inventory(int inventoryId, int filmId, int storeId) {
+    public Inventory(int inventoryId, int filmId, int storeId) {
         this.inventoryId = inventoryId;
         this.filmId = filmId;
         this.storeId = storeId;
     }
 
-    public inventory() {
+    public Inventory() {
     }
 
     public int getInventoryId() {

@@ -1,10 +1,10 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="actor")
-public class actor {
+public class Actor {
     // Attributes
     @Id
     @Column(name = "actor_id")
@@ -18,11 +18,11 @@ public class actor {
     String last_name;
 
     // Constructor
-    public actor(String first_name, String last_name){
+    public Actor(String first_name, String last_name){
         this.first_name = first_name;
         this.last_name = last_name;
     }
-    public actor() {}
+    public Actor() {}
 
     // Methods
     public String getFirst_name() {

@@ -1,4 +1,4 @@
-package com.Sakila.Sakila;
+package com.sakila;
 
 import javax.persistence.*;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "rental")
 
-public class rental {
+public class Rental {
 
     @Id
     @Column(name = "rental_id")
@@ -14,10 +14,10 @@ public class rental {
     int rentalId;
 
     @ManyToOne
-    private inventory inventory;
+    private Inventory inventory;
 
     @OneToMany(mappedBy = "rental")
-    private List<payment> paymentList;
+    private List<Payment> paymentList;
 
     @Column(name = "inventory_id")
     int inventoryId;
@@ -28,14 +28,14 @@ public class rental {
     @Column(name = "staff_id")
     int staffId;
 
-    public rental(int rentalId, int inventoryId, int customerId, int staffId) {
+    public Rental(int rentalId, int inventoryId, int customerId, int staffId) {
         this.rentalId = rentalId;
         this.inventoryId = inventoryId;
         this.customerId = customerId;
         this.staffId= staffId;
     }
 
-    public rental() {
+    public Rental() {
     }
 
     public int getRentalId() {
