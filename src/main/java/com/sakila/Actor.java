@@ -48,20 +48,12 @@ public class Actor {
         this.actor_id = actor_id;
     }
 
+    @Override
     public String toString() {
-        StringBuilder output = new StringBuilder();
-        output.append("Actor id = ");
-        output.append(this.actor_id);
-        output.append(" first name = ");
-        output.append(this.first_name);
-        output.append(" last name = ");
-        output.append(this.last_name);
-        return output.toString();
+        return "Actor{" +
+                "actor_id=" + actor_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                '}';
     }
-
-
-
-
-
-
 }

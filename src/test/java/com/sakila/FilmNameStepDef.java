@@ -1,6 +1,5 @@
 package com.sakila;
 
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,31 +10,31 @@ import org.springframework.web.client.ResourceAccessException;
 
 
 @ScenarioScope
-public class ActorNameStepDef {
+public class FilmNameStepDef {
 
     @Autowired
     public ActorRepository actorRepository;
     @Autowired
     public FilmRepository filmRepository;
     @Autowired
-    SakilaApplication actor = new SakilaApplication(actorRepository,filmRepository);
-    int actorid;
-    Actor actorinfo;
-    @Given("actor exists")
-    public void actor_exists() {
-        actorid = 1;
+    SakilaApplication film = new SakilaApplication(actorRepository,filmRepository);
+    int filmid;
+    Film filminfo;
+    @Given("film exists")
+    public void film_exists() {
+        filmid = 1;
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
     }
-    @When("user search for actor name")
-    public void user_search_for_actor_name() {
-        actorinfo = actor.actorRepository.findById(actorid).orElseThrow(() -> new ResourceAccessException("Actor not found at " + actorid));
+    @When("user search for film name")
+    public void user_search_for_film_name() {
+        filminfo = film.filmRepository.findById(filmid).orElseThrow(() -> new ResourceAccessException("Actor not found at " + filmid));
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
     }
-    @Then("show actor details")
-    public void show_actor_details() {
-        Assertions.assertEquals("Actor{actor_id=1, first_name='PENELOPE', last_name='GUINESS'}",actorinfo.toString(),"Wrong name");
+    @Then("show film details")
+    public void show_film_details() {
+        Assertions.assertEquals("Film{filmId=1, title='ACADEMY DINOSAUR', description='A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies', releaseYear=2006, rentalRate=0.99, length=86, replacementCost=20.99, rating='PG'}",filminfo.toString(),"Wrong name");
         // Assertions.assertEquals();
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
