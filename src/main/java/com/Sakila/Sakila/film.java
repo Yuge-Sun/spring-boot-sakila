@@ -1,6 +1,7 @@
 package com.Sakila.Sakila;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -12,6 +13,11 @@ public class film {
     @Column(name = "film_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int filmId;
+
+    @OneToMany(mappedBy = "film")
+    private List<inventory> inventoryList;
+
+
     @Column(name = "title")
     String title;
     @Column(name = "description")
@@ -27,6 +33,8 @@ public class film {
     @Column(name = "rating")
     String rating;
 
+
+
     public film(String title, String description, int releaseYear, double rentalRate, int length, double replacementCost, String rating) {
         this.title = title;
         this.description = description;
@@ -38,7 +46,6 @@ public class film {
     }
 
     public film() {
-
     }
     public int getFilmId() {
         return this.filmId;

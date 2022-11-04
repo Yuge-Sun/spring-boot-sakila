@@ -69,9 +69,14 @@ public class SakilaApplication {
 		return filmRepository.findAll();
 	}
 
-	@GetMapping("/findFilm/{id}")
+	@GetMapping("/findFilmById/{id}")
 	public film getFilmById(@PathVariable Integer id) {
-		return filmRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));
+		return filmRepository.getFilmNum(id);
+	}
+
+	@GetMapping("/findFilmSales/{id}")
+	public double getFilmSalesById(@PathVariable Integer id) {
+		return filmRepository.getFilmSales(id);
 	}
 
 
