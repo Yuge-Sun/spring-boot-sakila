@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class FilmTest {
     Film testFilm = new Film();
 
-
+    Film testFilmConstructor = new Film("ACE GOLDFINGER", "A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China", 2006, 4.99, 48, 12.99, "G");
 
     @Test
     void testGetFilmId() {
@@ -53,5 +53,10 @@ public class FilmTest {
     void testGetRating() {
         testFilm.setRating("G");
         Assertions.assertEquals("G", testFilm.getRating(), "Wrong Film Rating");
+    }
+
+    @Test
+    void testToString() {
+        Assertions.assertEquals("Film{filmId=0, title='ACE GOLDFINGER', description='A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China', releaseYear=2006, rentalRate=4.99, length=48, replacementCost=12.99, rating='G'}", testFilmConstructor.toString(), "Wrong Film ToString");
     }
 }
