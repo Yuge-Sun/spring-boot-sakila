@@ -41,8 +41,7 @@ public class SakilaApplication {
 	}
 	@PostMapping("/addActor")
 	public Actor createActor(@RequestBody Actor actor) {
-		Actor newActor = new Actor(actor.getFirst_name(),actor.getLast_name());
-		return actorRepository.save(newActor);
+		return actorRepository.save(actor);
 	}
 	@PutMapping("/putActor/{id}")
 	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") Integer id, @RequestBody Actor actorDetails) {
@@ -50,7 +49,7 @@ public class SakilaApplication {
 		actorDetails.setActor_id(actorDetails.getActor_id());
 		actorDetails.setLast_name(actorDetails.getLast_name());
 		actorDetails.setFirst_name(actorDetails.getFirst_name());
-		Actor updatedActor = actorRepository.save(Actor);
+		Actor updatedActor = actorRepository.save(actorDetails);
 		return ResponseEntity.ok(updatedActor);
 	}
 	@DeleteMapping("/deleteActor/{id}")
