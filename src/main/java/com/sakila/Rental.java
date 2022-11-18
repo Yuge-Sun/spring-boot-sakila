@@ -42,6 +42,10 @@ public class Rental {
         return rentalId;
     }
 
+    public void setRentalId(int rentalId) {
+        this.rentalId = rentalId;
+    }
+
     public int getInventoryId() {
         return inventoryId;
     }

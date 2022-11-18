@@ -41,6 +41,10 @@ public class Payment {
         return paymentId;
     }
 
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
+
     public int getCustomerId() {
         return customerId;
     }
