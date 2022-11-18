@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 
 public class ActorTest {
-    Actor testActor = new Actor("Test", "Test");
+    Actor testActor = new Actor();
+
+    Actor testActorConstructor = new Actor("Yuge", "Sun");
 
     @Test
     void testGetActorId() {
@@ -23,5 +25,10 @@ public class ActorTest {
     void testGetLastName() {
         testActor.setLast_name("WAHLBERG");
         Assertions.assertEquals("WAHLBERG", testActor.getLast_name(), "Wrong Actor Last Name");
+    }
+
+    @Test
+    void testToString() {
+        Assertions.assertEquals("Actor{actor_id=0, first_name='Yuge', last_name='Sun'}", testActorConstructor.toString(), "Wrong Actor ToString");
     }
 }
