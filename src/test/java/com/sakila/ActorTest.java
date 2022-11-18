@@ -5,12 +5,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class ActorTest {
-    Actor testActor = new Actor();
-
-    @Test
-    void  testConstructor() {
-
-    }
+    Actor testActor = new Actor("Test", "Test");
 
     @Test
     void testGetActorId() {
