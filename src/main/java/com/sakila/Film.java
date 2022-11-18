@@ -50,6 +50,10 @@ public class Film {
         return this.filmId;
     }
 
+    public void setFilmId(int filmId) {
+        this.filmId = filmId;
+    }
+
     public String getTitle() {
         return this.title;
     }

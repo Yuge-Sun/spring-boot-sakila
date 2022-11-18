@@ -8,6 +8,11 @@ public class ActorTest {
     Actor testActor = new Actor();
 
     @Test
+    void  testConstructor() {
+
+    }
+
+    @Test
     void testGetActorId() {
         testActor.setActor_id(2);
         Assertions.assertEquals(2, testActor.getActor_id(), "Wrong Actor ID");
