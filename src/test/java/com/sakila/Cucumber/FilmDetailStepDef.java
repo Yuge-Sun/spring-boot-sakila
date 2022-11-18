@@ -1,5 +1,9 @@
-package com.sakila;
+package com.sakila.Cucumber;
 
+import com.sakila.ActorRepository;
+import com.sakila.Film;
+import com.sakila.FilmRepository;
+import com.sakila.SakilaApplication;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,7 +14,7 @@ import org.springframework.web.client.ResourceAccessException;
 
 
 @ScenarioScope
-public class FilmNameStepDef {
+public class FilmDetailStepDef {
 
     @Autowired
     public ActorRepository actorRepository;
@@ -20,23 +24,26 @@ public class FilmNameStepDef {
     SakilaApplication film = new SakilaApplication(actorRepository,filmRepository);
     int filmid;
     Film filminfo;
-    @Given("film exists")
-    public void film_exists() {
+    @Given("website shows the movie posters to the user")
+    public void websiteShowsTheMoviePostersToTheUser() {
         filmid = 1;
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
     }
-    @When("user search for film name")
-    public void user_search_for_film_name() {
+    @When("user hover over the movie poster")
+    public void userHoverOverTheMoviePoster() {
         filminfo = film.filmRepository.findById(filmid).orElseThrow(() -> new ResourceAccessException("Film not found at " + filmid));
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
     }
-    @Then("show film details")
-    public void show_film_details() {
+    @Then("show film title and film description")
+    public void showFilmTitleAndFilmDescription() {
         Assertions.assertEquals("Film{filmId=1, title='ACADEMY DINOSAUR', description='A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies', releaseYear=2006, rentalRate=0.99, length=86, replacementCost=20.99, rating='PG'}",filminfo.toString(),"Wrong name");
         // Assertions.assertEquals();
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
     }
+
+
+
 }

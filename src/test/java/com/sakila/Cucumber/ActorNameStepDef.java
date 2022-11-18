@@ -1,6 +1,10 @@
-package com.sakila;
+package com.sakila.Cucumber;
 
 
+import com.sakila.Actor;
+import com.sakila.ActorRepository;
+import com.sakila.FilmRepository;
+import com.sakila.SakilaApplication;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

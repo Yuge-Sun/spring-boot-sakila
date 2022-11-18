@@ -40,16 +40,17 @@ public class SakilaApplication {
 		return actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));
 	}
 	@PostMapping("/addActor")
-	public Actor createActor(@RequestBody Actor actor) {
-		return actorRepository.save(actor);
+	public Actor createActor(@RequestBody ActorDummy actor) {
+		Actor Actor = new Actor(actor.getFirst_name(),actor.getLast_name());
+		return actorRepository.save(Actor);
 	}
 	@PutMapping("/putActor/{id}")
-	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") Integer id, @RequestBody Actor actorDetails) {
+	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") Integer id, @RequestBody ActorDummy actorDetails) {
 		Actor Actor =  actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));;
-		actorDetails.setActor_id(actorDetails.getActor_id());
-		actorDetails.setLast_name(actorDetails.getLast_name());
-		actorDetails.setFirst_name(actorDetails.getFirst_name());
-		Actor updatedActor = actorRepository.save(actorDetails);
+		Actor.setActor_id(actorDetails.getActor_id());
+		Actor.setLast_name(actorDetails.getLast_name());
+		Actor.setFirst_name(actorDetails.getFirst_name());
+		Actor updatedActor = actorRepository.save(Actor);
 		return ResponseEntity.ok(updatedActor);
 	}
 	@DeleteMapping("/deleteActor/{id}")
