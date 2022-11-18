@@ -28,7 +28,7 @@ public class FilmNameStepDef {
     }
     @When("user search for film name")
     public void user_search_for_film_name() {
-        filminfo = film.filmRepository.findById(filmid).orElseThrow(() -> new ResourceAccessException("Actor not found at " + filmid));
+        filminfo = film.filmRepository.findById(filmid).orElseThrow(() -> new ResourceAccessException("Film not found at " + filmid));
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
     }

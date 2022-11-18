@@ -41,23 +41,22 @@ public class SakilaApplication {
 	}
 	@PostMapping("/addActor")
 	public Actor createActor(@RequestBody Actor actor) {
-		return actorRepository.save(actor);
+		Actor newActor = new Actor(actor.getFirst_name(),actor.getLast_name());
+		return actorRepository.save(newActor);
 	}
 	@PutMapping("/putActor/{id}")
 	public ResponseEntity<Actor> updateActor(@PathVariable(value = "id") Integer id, @RequestBody Actor actorDetails) {
-		Optional<Actor> optionalActor =  actorRepository.findById(id);
-		Actor actor = optionalActor.get();
+		Actor Actor =  actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));;
 		actorDetails.setActor_id(actorDetails.getActor_id());
 		actorDetails.setLast_name(actorDetails.getLast_name());
 		actorDetails.setFirst_name(actorDetails.getFirst_name());
-		Actor updatedActor = actorRepository.save(actorDetails);
+		Actor updatedActor = actorRepository.save(Actor);
 		return ResponseEntity.ok(updatedActor);
 	}
 	@DeleteMapping("/deleteActor/{id}")
 	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer id){
-		Optional<Actor> optionalActor =  actorRepository.findById(id);
-		Actor actor = optionalActor.get();
-		actorRepository.delete(actor);
+		Actor Actor =  actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found at " + id));
+		actorRepository.delete(Actor);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
